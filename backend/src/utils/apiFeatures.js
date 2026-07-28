@@ -1,0 +1,80 @@
+class ApiFeatures {
+
+    constructor(query, queryString) {
+        this.query = query;
+        this.queryString = queryString;
+    }
+
+    search() {
+        const search = this.queryString.search;
+
+        if (search) {
+            this.query = this.query.find({
+                $or: [
+                    {
+                        title: {
+                            $regex: search,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        address: {
+                            $regex: search,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        description: {
+                            $regex: search,
+                            $options: "i",
+                        },
+                    },
+                ],
+            });
+        }
+
+        return this;
+    }
+
+    filter() {
+        const queryObject = { ... this.queryString };
+
+        const excludedFields = ["search", "page", "limit", "sort"];
+
+        excludedFields.forEach((field) => {
+            delete queryObject[field];
+        });
+
+        this.query = this.query.find(queryObject);
+
+        return this;
+    }
+
+    sort() {
+        if (this.queryString.sort) {
+            const sortBy = this.queryString.sort.replaceAll(",", " ");
+
+            this.query = this.query.sort(sortBy);
+
+        } else {
+            this.query = this.query.sort("-createdAt");
+        }
+
+        return this;
+    }
+
+    pagination() {
+        const page = Number(this.queryString.page) || 1;
+
+        const limit = Number(this.queryString.limit) || 5;
+
+        const skip = (page - 1) * limit;
+
+        this.query = this.query.skip(skip).limit(limit);
+
+        return this;
+    }
+
+}
+
+export default ApiFeatures;
