@@ -1,7 +1,14 @@
 import { createProperty, deleteProperty, getAllProperties, getPropertyById, updateProperty } from "../services/propertyService.js";
 
 export const createPropertyController = async (req, res) => {
-    const property = await createProperty(req.body);
+    const images = req.files?.map((file) => `/uploads/properties/${file.filename}`) || [];
+
+    const propertyData = {
+        ...req.body,
+        images
+    };
+
+    const property = await createProperty(propertyData);
 
     res.status(201).json({
         success: true,
@@ -31,7 +38,15 @@ export const getPropertyByIdController = async (req, res) => {
 }
 
 export const updatePropertyController = async (req, res) => {
-    const property = await updateProperty(req.params.id, req.body);
+    const images = req.files?.map((file) => `/uploads/properties/${file.filename}`) || [];
+
+    const updateData = { ...req.body };
+
+    if (images.length > 0) {
+        updateData.images = images;
+    }
+
+    const property = await updateProperty(req.params.id, updateData);
 
     res.status(200).json({
         success: true,
