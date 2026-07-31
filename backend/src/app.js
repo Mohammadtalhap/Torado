@@ -6,6 +6,7 @@ import errorMiddleware from "./middlewares/errorMiddleware.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import healthRoutes from "./routes/healthRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
+import agentRoutes from "./routes/agentRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +23,7 @@ app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 app.use("/", healthRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/agents", agentRoutes);
 
 // Last Middleware (Error)
 app.use(errorMiddleware);

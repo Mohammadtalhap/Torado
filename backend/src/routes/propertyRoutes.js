@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { createPropertyController, deletePropertyController, getAllPropertiesController, getPropertyByIdController, updatePropertyController } from "../controllers/propertyController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
-import upload from "../middlewares/uploadMiddleware.js";
+import createUploadMiddleware from "../middlewares/uploadMiddleware.js";
+
+const upload = createUploadMiddleware("properties");
 
 const router = Router();
 
