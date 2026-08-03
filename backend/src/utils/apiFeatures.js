@@ -5,31 +5,17 @@ class ApiFeatures {
         this.queryString = queryString;
     }
 
-    search() {
+    search(searchFields = []) {
         const search = this.queryString.search;
 
-        if (search) {
+        if (search && searchFields.length) {
             this.query = this.query.find({
-                $or: [
-                    {
-                        title: {
-                            $regex: search,
-                            $options: "i",
-                        },
+                $or: searchFields.map((field) => ({
+                    [field]: {
+                        $regex: search,
+                        $options: "i",
                     },
-                    {
-                        address: {
-                            $regex: search,
-                            $options: "i",
-                        },
-                    },
-                    {
-                        description: {
-                            $regex: search,
-                            $options: "i",
-                        },
-                    },
-                ],
+                })),
             });
         }
 
@@ -63,7 +49,7 @@ class ApiFeatures {
         return this;
     }
 
-    pagination() {
+    paginate() {
         const page = Number(this.queryString.page) || 1;
 
         const limit = Number(this.queryString.limit) || 5;

@@ -13,10 +13,14 @@ export const getAllProperties = async (query) => {
         Property.find(),
         query
     )
-        .search()
+        .search([
+            "title",
+            "address",
+            "description",
+        ])
         .filter()
         .sort()
-        .pagination();
+        .paginate();
 
     const properties = await features.query;
 
