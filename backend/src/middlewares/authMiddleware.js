@@ -16,7 +16,7 @@ const verifyToken = (token) => {
 }
 
 const findAdmin = async (adminId) => {
-    const admin = await Admin.findById(adminId);
+    const admin = await Admin.findById(adminId).select("-password");
 
     if (!admin) {
         throw new Error("Admin not found.");

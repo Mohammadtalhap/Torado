@@ -18,3 +18,16 @@ export const loginAdminController = async (req, res) => {
             message: "Admin logged in successfully!",
         });
 };
+
+export const getAdminProfileController = async (req, res) => {
+    const { _id, name, email } = req.admin;
+    
+    res.status(200).json({
+        success: true,
+        data: {
+            _id,
+            name,
+            email,
+        }
+    });
+};
