@@ -1,13 +1,13 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute() {
   const { loading, isAuthenticated } = useAuth();
 
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <span className="h-30 w-30 animate-spin rounded-full border-b-2 border-gray-900"></span>
+        <span className="h-20 w-20 animate-spin rounded-full border-b-2 border-gray-900"></span>
       </div>
     );
   }
@@ -16,7 +16,7 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/" replace />;
   }
 
-  return children;
+  return <Outlet />;
 }
 
 export default ProtectedRoute;

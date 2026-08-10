@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-function PublicRoute({ children }) {
+function PublicRoute() {
   const { loading, isAuthenticated } = useAuth();
 
   if (loading) {
@@ -16,7 +16,7 @@ function PublicRoute({ children }) {
     return <Navigate to="/dashboard" replace />;
   }
 
-  return children;
+  return <Outlet />;
 }
 
 export default PublicRoute;
