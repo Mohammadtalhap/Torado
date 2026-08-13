@@ -9,6 +9,7 @@ import PropertyListPage from "../pages/properties/PropertyListPage.jsx";
 import ProtectedRoute from "../components/auth/ProtectedRoute.jsx";
 import PublicRoute from "../components/auth/PublicRoute.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
+import PropertyFormPage from "../pages/properties/PropertyFormPage.jsx";
 
 function AppRoutes() {
   return (
@@ -19,10 +20,17 @@ function AppRoutes() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<AdminLayout />}>
+
           <Route path="/dashboard" element={<DashboardPage />} />
+
           <Route path="/properties" element={<PropertyListPage />} />
+          <Route path="/properties/create" element={<PropertyFormPage />} />
+          <Route path="/properties/edit/:id" element={<PropertyFormPage />} />
+
           <Route path="/agents" element={<AgentListPage />} />
+
           <Route path="/blogs" element={<BlogListPage />} />
+
         </Route>
       </Route>
     </Routes>

@@ -47,7 +47,7 @@ function LoginPage() {
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           {/* Email Box */}
           <div>
-            <label htmlFor="" className="mb-2 block font-medium">
+            <label className="mb-2 block font-medium">
               Email
             </label>
 
@@ -63,7 +63,7 @@ function LoginPage() {
 
           {/* Password Box */}
           <div>
-            <label htmlFor="" className="mb-2 block font-medium">
+            <label className="mb-2 block font-medium">
               Password
             </label>
 
