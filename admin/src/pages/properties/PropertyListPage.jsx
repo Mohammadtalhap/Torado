@@ -23,7 +23,7 @@ function PropertyListPage() {
       try {
         setLoading(true);
         setProperties([]);
-        
+
         const response = await getProperties(search, propertyType, purpose, sort);
 
         setProperties(response.data);
@@ -173,7 +173,7 @@ function PropertyListPage() {
           <tbody className="">
             {properties.map((property) => {
               return (
-                <tr key={property._id}>
+                <tr key={property._id} className="border-b last:border-b-0 border-gray-200">
                   <td className="px-4 py-4">
                     <div className="h-16 w-24 rounded bg-gray-200">
                       <img
@@ -193,7 +193,7 @@ function PropertyListPage() {
                   <td className="px-4 py-4">{property.purpose}</td>
 
                   <td className="space-x-2 px-4 py-4">
-                    <button onClick={() => navigate(`/properties/edit/${property._id}`)} className="rounded bg-green-600 px-3 py-1 text-white cursor-pointer transition hover:bg-green-700">
+                    <button onClick={() => navigate(`/properties/edit/${property._id}`)} className="rounded bg-yellow-500 px-3 py-1 text-white cursor-pointer transition hover:bg-yellow-600">
                       Edit
                     </button>
 
