@@ -43,7 +43,7 @@ export const updateAgentController = async (req, res) => {
     };
 
     if (req.file) {
-        agentData.image = req.file.path;
+        agentData.image = `/uploads/agents/${req.file.filename}`;
     }
 
     const updatedAgent = await updateAgent(req.params.id, agentData);

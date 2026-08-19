@@ -42,7 +42,7 @@ const prepareAgentData = (existingData, agentData) => {
         phone: agentData.phone ?? existingData.phone,
         bio: agentData.bio ?? existingData.bio,
         experience: agentData.experience ?? existingData.experience,
-        specialities: agentData.speciality ?? existingData.speciality,
+        specialities: agentData.specialities ?? existingData.specialities,
         image: agentData.image ?? existingData.image,
     }
 }

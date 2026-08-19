@@ -2,7 +2,7 @@ import { Pencil, Plus, Trash } from 'lucide-react';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { getAgents } from "../../services/agentService.js";
+import { deleteAgent, getAgents } from "../../services/agentService.js";
 import imageUrl from "../../utils/imageLinkGenerator.js";
 
 function AgentListPage() {
@@ -37,10 +37,12 @@ function AgentListPage() {
       await deleteAgent(id);
 
       toast.success("Agent deleted successfully");
+
+      fetchAgents();
     } catch (error) {
       console.error(error);
 
-      toast.error(error.response?.message || "Failed to delete agent");
+      toast.error(error.message || "Failed to delete agent");
     }
   }
 
@@ -133,7 +135,7 @@ function AgentListPage() {
                   <td className="p-4">
                     <div className="flex gap-2">
                       <Link
-                        to={`/agents/${agent._id}`}
+                        to={`/agents/edit/${agent._id}`}
                         className="rounded bg-yellow-500 p-2 text-white transition hover:bg-yellow-600 flex justify-center items-center" title="View Agent"
                       >
                         <Pencil size="18" />
