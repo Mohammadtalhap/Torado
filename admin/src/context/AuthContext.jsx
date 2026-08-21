@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAdminProfile } from "../services/authService.js";
+import { getAdminProfile, logoutAdmin as logoutAdminRequest } from "../services/authService.js";
 
 const AuthContext = createContext();
 
@@ -22,11 +22,20 @@ function AuthProvider({ children }) {
     }
   };
 
+  const logoutAdmin = async () => {
+    try {
+      await logoutAdminRequest();
+    } finally {
+      setAdmin(null);
+    }
+  };
+
   const value = {
     admin,
     setAdmin,
     loading,
     loadAdmin,
+    logoutAdmin,
     isAuthenticated: !!admin,
   };
 

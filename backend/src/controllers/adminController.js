@@ -21,7 +21,7 @@ export const loginAdminController = async (req, res) => {
 
 export const getAdminProfileController = async (req, res) => {
     const { _id, name, email } = req.admin;
-    
+
     res.status(200).json({
         success: true,
         data: {
@@ -31,3 +31,17 @@ export const getAdminProfileController = async (req, res) => {
         }
     });
 };
+
+export const logoutAdminController = async (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+    });
+
+    return res.status(200).json({
+        success: true,
+        message: "Admin logged out successfully!",
+        data: {},
+    });
+}
