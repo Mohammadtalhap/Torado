@@ -10,6 +10,7 @@ import ProtectedRoute from "../components/auth/ProtectedRoute.jsx";
 import PublicRoute from "../components/auth/PublicRoute.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
 import AgentFormPage from "../pages/agents/AgentFormPage.jsx";
+import BlogFormPage from "../pages/blogs/BlogFormPage.jsx";
 import PropertyFormPage from "../pages/properties/PropertyFormPage.jsx";
 
 function AppRoutes() {
@@ -32,7 +33,9 @@ function AppRoutes() {
           <Route path="/agents/create" element={<AgentFormPage />} />
           <Route path="/agents/edit/:id" element={<AgentFormPage />} />
 
-          <Route path="/blogs" element={<BlogListPage />} />
+          <Route path="/blogs/" element={<BlogListPage />} />
+          <Route path="/blogs/create" element={<BlogFormPage />} />
+          <Route path="/blogs/edit/:id" element={<BlogFormPage />} />
 
         </Route>
       </Route>

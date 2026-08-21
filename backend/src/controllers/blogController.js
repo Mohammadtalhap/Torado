@@ -4,7 +4,7 @@ export const createBlogController = async (req, res) => {
     const blogData = {
         ...req.body,
         ...(req.file && {
-            image: `uploads/blogs/${req.file.filename}`
+            image: `/uploads/blogs/${req.file.filename}`
         })
     }
 
@@ -64,7 +64,7 @@ export const updateBlogController = async (req, res) => {
     const blogData = {
         ...req.body,
         ...(req.file && {
-            image: `uploads/blogs/${req.file.filename}`,
+            image: `/uploads/blogs/${req.file.filename}`,
         })
     }
 
